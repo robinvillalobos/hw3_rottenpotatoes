@@ -23,9 +23,17 @@ Background: movies have been added to database
 
 Scenario: sort movies alphabetically
   When I follow "Movie Title"
-  # your steps here
+  Given I check the following ratings: R
+  And I uncheck the following ratings: PG, G, PG-13, NC-17
+  When I press "ratings_submit"
+  Then I should see "Amelie" before "The Terminator"
+  And I should see "The Terminator" before "When Harry Met Sally"
 
 Scenario: sort movies in increasing order of release date
   When I follow "Release Date"
-  # your steps here
+  Given I check the following ratings: R
+  And I uncheck the following ratings: PG, G, PG-13, NC-17
+  When I press "ratings_submit"
+  Then I should see "The Terminator" before "When Harry Met Sally"
+  And I should see "When Harry Met Sally" before "Amelie"
 
